@@ -1,0 +1,435 @@
+[
+  {
+    "id": "R1",
+    "decision": "block",
+    "applied_policies": [
+      "MED_STRICT",
+      "MED_BLOCK"
+    ],
+    "rule_trace": [
+      {
+        "policy_id": "MED_STRICT",
+        "confidence_required": 0.95,
+        "confidence_given": 0.96,
+        "threshold_met": true,
+        "candidate_actions": [
+          "escalate"
+        ],
+        "effective_actions": [
+          "escalate"
+        ]
+      },
+      {
+        "policy_id": "MED_BLOCK",
+        "confidence_required": 0.0,
+        "confidence_given": 0.96,
+        "threshold_met": true,
+        "candidate_actions": [
+          "block"
+        ],
+        "effective_actions": [
+          "block"
+        ]
+      }
+    ],
+    "final_output": "[Output suppressed by guardrail policy.]",
+    "reason": "Policy MED_STRICT: confidence 0.96 >= 0.95 \u2713, actions=['escalate'] | Policy MED_BLOCK: confidence 0.96 >= 0.0 \u2713, actions=['block'] | Multiple actions found ['block', 'escalate']; most restrictive 'block' selected."
+  },
+  {
+    "id": "R2",
+    "decision": "block",
+    "applied_policies": [
+      "MED_BLOCK"
+    ],
+    "rule_trace": [
+      {
+        "policy_id": "MED_STRICT",
+        "confidence_required": 0.95,
+        "confidence_given": 0.82,
+        "threshold_met": false,
+        "candidate_actions": [
+          "escalate"
+        ],
+        "effective_actions": []
+      },
+      {
+        "policy_id": "MED_BLOCK",
+        "confidence_required": 0.0,
+        "confidence_given": 0.82,
+        "threshold_met": true,
+        "candidate_actions": [
+          "block"
+        ],
+        "effective_actions": [
+          "block"
+        ]
+      }
+    ],
+    "final_output": "[Output suppressed by guardrail policy.]",
+    "reason": "Policy MED_BLOCK: confidence 0.82 >= 0.0 \u2713, actions=['block']"
+  },
+  {
+    "id": "R3",
+    "decision": "block",
+    "applied_policies": [
+      "MED_BLOCK"
+    ],
+    "rule_trace": [
+      {
+        "policy_id": "MED_STRICT",
+        "confidence_required": 0.95,
+        "confidence_given": 0.6,
+        "threshold_met": false,
+        "candidate_actions": [
+          "escalate"
+        ],
+        "effective_actions": []
+      },
+      {
+        "policy_id": "MED_BLOCK",
+        "confidence_required": 0.0,
+        "confidence_given": 0.6,
+        "threshold_met": true,
+        "candidate_actions": [
+          "block"
+        ],
+        "effective_actions": [
+          "block"
+        ]
+      }
+    ],
+    "final_output": "[Output suppressed by guardrail policy.]",
+    "reason": "Policy MED_BLOCK: confidence 0.6 >= 0.0 \u2713, actions=['block']"
+  },
+  {
+    "id": "R4",
+    "decision": "escalate",
+    "applied_policies": [
+      "FIN_STRICT",
+      "FIN_RELAXED"
+    ],
+    "rule_trace": [
+      {
+        "policy_id": "FIN_STRICT",
+        "confidence_required": 0.9,
+        "confidence_given": 0.93,
+        "threshold_met": true,
+        "candidate_actions": [
+          "sanitize",
+          "escalate"
+        ],
+        "effective_actions": [
+          "sanitize",
+          "escalate"
+        ]
+      },
+      {
+        "policy_id": "FIN_RELAXED",
+        "confidence_required": 0.8,
+        "confidence_given": 0.93,
+        "threshold_met": true,
+        "candidate_actions": [
+          "allow"
+        ],
+        "effective_actions": [
+          "allow"
+        ]
+      }
+    ],
+    "final_output": "Sent for human review.",
+    "reason": "Policy FIN_STRICT: confidence 0.93 >= 0.9 \u2713, actions=['sanitize', 'escalate'] | Policy FIN_RELAXED: confidence 0.93 >= 0.8 \u2713, actions=['allow'] | Multiple actions found ['allow', 'escalate', 'sanitize']; most restrictive 'escalate' selected."
+  },
+  {
+    "id": "R5",
+    "decision": "allow",
+    "applied_policies": [
+      "FIN_RELAXED"
+    ],
+    "rule_trace": [
+      {
+        "policy_id": "FIN_STRICT",
+        "confidence_required": 0.9,
+        "confidence_given": 0.88,
+        "threshold_met": false,
+        "candidate_actions": [
+          "sanitize",
+          "escalate"
+        ],
+        "effective_actions": []
+      },
+      {
+        "policy_id": "FIN_RELAXED",
+        "confidence_required": 0.8,
+        "confidence_given": 0.88,
+        "threshold_met": true,
+        "candidate_actions": [
+          "allow"
+        ],
+        "effective_actions": [
+          "allow"
+        ]
+      }
+    ],
+    "final_output": "Your payment will be reversed automatically",
+    "reason": "Policy FIN_RELAXED: confidence 0.88 >= 0.8 \u2713, actions=['allow']"
+  },
+  {
+    "id": "R6",
+    "decision": "allow",
+    "applied_policies": [
+      "FIN_RELAXED"
+    ],
+    "rule_trace": [
+      {
+        "policy_id": "FIN_STRICT",
+        "confidence_required": 0.9,
+        "confidence_given": 0.81,
+        "threshold_met": false,
+        "candidate_actions": [
+          "sanitize",
+          "escalate"
+        ],
+        "effective_actions": []
+      },
+      {
+        "policy_id": "FIN_RELAXED",
+        "confidence_required": 0.8,
+        "confidence_given": 0.81,
+        "threshold_met": true,
+        "candidate_actions": [
+          "allow"
+        ],
+        "effective_actions": [
+          "allow"
+        ]
+      }
+    ],
+    "final_output": "Refund approved",
+    "reason": "Policy FIN_RELAXED: confidence 0.81 >= 0.8 \u2713, actions=['allow']"
+  },
+  {
+    "id": "R7",
+    "decision": "block",
+    "applied_policies": [],
+    "rule_trace": [
+      {
+        "policy_id": "FIN_STRICT",
+        "confidence_required": 0.9,
+        "confidence_given": 0.65,
+        "threshold_met": false,
+        "candidate_actions": [
+          "sanitize",
+          "escalate"
+        ],
+        "effective_actions": []
+      },
+      {
+        "policy_id": "FIN_RELAXED",
+        "confidence_required": 0.8,
+        "confidence_given": 0.65,
+        "threshold_met": false,
+        "candidate_actions": [
+          "allow"
+        ],
+        "effective_actions": []
+      }
+    ],
+    "final_output": "[Output suppressed by guardrail policy.]",
+    "reason": "All matching policies failed confidence threshold: FIN_STRICT requires confidence >= 0.9 (got 0.65); FIN_RELAXED requires confidence >= 0.8 (got 0.65). Default action 'block' applied."
+  },
+  {
+    "id": "R8",
+    "decision": "sanitize",
+    "applied_policies": [
+      "GEN_ALLOW",
+      "GEN_SANITIZE"
+    ],
+    "rule_trace": [
+      {
+        "policy_id": "GEN_ALLOW",
+        "confidence_required": 0.7,
+        "confidence_given": 0.92,
+        "threshold_met": true,
+        "candidate_actions": [
+          "allow"
+        ],
+        "effective_actions": [
+          "allow"
+        ]
+      },
+      {
+        "policy_id": "GEN_SANITIZE",
+        "confidence_required": 0.0,
+        "confidence_given": 0.92,
+        "threshold_met": true,
+        "candidate_actions": [
+          "sanitize"
+        ],
+        "effective_actions": [
+          "sanitize"
+        ]
+      }
+    ],
+    "final_output": "This response cannot be shown. Please consult a qualified professional.",
+    "reason": "Policy GEN_ALLOW: confidence 0.92 >= 0.7 \u2713, actions=['allow'] | Policy GEN_SANITIZE: confidence 0.92 >= 0.0 \u2713, actions=['sanitize'] | Multiple actions found ['allow', 'sanitize']; most restrictive 'sanitize' selected."
+  },
+  {
+    "id": "R9",
+    "decision": "sanitize",
+    "applied_policies": [
+      "GEN_ALLOW",
+      "GEN_SANITIZE"
+    ],
+    "rule_trace": [
+      {
+        "policy_id": "GEN_ALLOW",
+        "confidence_required": 0.7,
+        "confidence_given": 0.75,
+        "threshold_met": true,
+        "candidate_actions": [
+          "allow"
+        ],
+        "effective_actions": [
+          "allow"
+        ]
+      },
+      {
+        "policy_id": "GEN_SANITIZE",
+        "confidence_required": 0.0,
+        "confidence_given": 0.75,
+        "threshold_met": true,
+        "candidate_actions": [
+          "sanitize"
+        ],
+        "effective_actions": [
+          "sanitize"
+        ]
+      }
+    ],
+    "final_output": "This response cannot be shown. Please consult a qualified professional.",
+    "reason": "Policy GEN_ALLOW: confidence 0.75 >= 0.7 \u2713, actions=['allow'] | Policy GEN_SANITIZE: confidence 0.75 >= 0.0 \u2713, actions=['sanitize'] | Multiple actions found ['allow', 'sanitize']; most restrictive 'sanitize' selected."
+  },
+  {
+    "id": "R10",
+    "decision": "sanitize",
+    "applied_policies": [
+      "GEN_SANITIZE"
+    ],
+    "rule_trace": [
+      {
+        "policy_id": "GEN_ALLOW",
+        "confidence_required": 0.7,
+        "confidence_given": 0.55,
+        "threshold_met": false,
+        "candidate_actions": [
+          "allow"
+        ],
+        "effective_actions": []
+      },
+      {
+        "policy_id": "GEN_SANITIZE",
+        "confidence_required": 0.0,
+        "confidence_given": 0.55,
+        "threshold_met": true,
+        "candidate_actions": [
+          "sanitize"
+        ],
+        "effective_actions": [
+          "sanitize"
+        ]
+      }
+    ],
+    "final_output": "This response cannot be shown. Please consult a qualified professional.",
+    "reason": "Policy GEN_SANITIZE: confidence 0.55 >= 0.0 \u2713, actions=['sanitize']"
+  },
+  {
+    "id": "R11",
+    "decision": "sanitize",
+    "applied_policies": [
+      "GEN_SANITIZE"
+    ],
+    "rule_trace": [
+      {
+        "policy_id": "GEN_ALLOW",
+        "confidence_required": 0.7,
+        "confidence_given": 0.4,
+        "threshold_met": false,
+        "candidate_actions": [
+          "allow"
+        ],
+        "effective_actions": []
+      },
+      {
+        "policy_id": "GEN_SANITIZE",
+        "confidence_required": 0.0,
+        "confidence_given": 0.4,
+        "threshold_met": true,
+        "candidate_actions": [
+          "sanitize"
+        ],
+        "effective_actions": [
+          "sanitize"
+        ]
+      }
+    ],
+    "final_output": "This response cannot be shown. Please consult a qualified professional.",
+    "reason": "Policy GEN_SANITIZE: confidence 0.4 >= 0.0 \u2713, actions=['sanitize']"
+  },
+  {
+    "id": "R12",
+    "decision": "sanitize",
+    "applied_policies": [
+      "GEN_SANITIZE"
+    ],
+    "rule_trace": [
+      {
+        "policy_id": "GEN_ALLOW",
+        "confidence_required": 0.7,
+        "confidence_given": 0.2,
+        "threshold_met": false,
+        "candidate_actions": [
+          "allow"
+        ],
+        "effective_actions": []
+      },
+      {
+        "policy_id": "GEN_SANITIZE",
+        "confidence_required": 0.0,
+        "confidence_given": 0.2,
+        "threshold_met": true,
+        "candidate_actions": [
+          "sanitize"
+        ],
+        "effective_actions": [
+          "sanitize"
+        ]
+      }
+    ],
+    "final_output": "This response cannot be shown. Please consult a qualified professional.",
+    "reason": "Policy GEN_SANITIZE: confidence 0.2 >= 0.0 \u2713, actions=['sanitize']"
+  },
+  {
+    "id": "R13",
+    "decision": "block",
+    "applied_policies": [],
+    "rule_trace": [],
+    "final_output": "[Output suppressed by guardrail policy.]",
+    "reason": "No policies found for risk type 'unknown'; default action 'block' applied."
+  },
+  {
+    "id": "R14",
+    "decision": "block",
+    "applied_policies": [],
+    "rule_trace": [],
+    "final_output": "[Output suppressed by guardrail policy.]",
+    "reason": "No policies found for risk type 'unknown'; default action 'block' applied."
+  },
+  {
+    "id": "R15",
+    "decision": "block",
+    "applied_policies": [],
+    "rule_trace": [],
+    "final_output": "[Output suppressed by guardrail policy.]",
+    "reason": "No policies found for risk type 'unknown'; default action 'block' applied."
+  }
+]
